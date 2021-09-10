@@ -1,0 +1,44 @@
+﻿@model BusinessLogic.ViewModel.BranchUpdateModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div>
+    <h4>BranchUpdateModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Scope)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.DropDownListFor(model=>model.UserId, new SelectList(ViewBag.Workers))*@
+
+            @*@Html.DropDownList("UserId", new SelectList(ViewBag.Workers))*@
+            @Html.DropDownListFor(model=>model.UserId, new SelectList(ViewBag.Workers,"Id", "UserName"))
+
+
+
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default savebutton text-center" />
+        </div>
+    </div>
+</div>
+}
+
+<button>
+    @Html.ActionLink("Cancel", "Index")
+</button>
+
+

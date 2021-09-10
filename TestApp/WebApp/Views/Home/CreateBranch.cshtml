@@ -1,0 +1,106 @@
+﻿@model BusinessLogic.ViewModel.BranchCreateModel
+
+@{
+    ViewBag.Title = "CreateBranch";
+}
+
+<h2>CreateBranch</h2>
+
+
+@using (Html.BeginForm("CreateBranch", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal row">
+    <h4>BranchCreateModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-4">
+        <div class="row">
+            <div class="form-group col-md-12" style="display:flex; flex-direction:column">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-12" style="display:flex; flex-direction:column">
+                @Html.LabelFor(model => model.Adress, htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-12" style="display:flex; flex-direction:column">
+                @Html.LabelFor(model => model.Scope, htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.Scope, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Scope, "", new { @class = "text-danger" })
+                </div>
+            </div>
+          
+            <div class="form-group col-md-12" style="display:flex; flex-direction:column">
+                @Html.Label("Fayl", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="row">
+
+
+            <div class="form-group col-md-12 " style="display:flex; flex-direction:column">
+                @Html.Label("Representative Name", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Representative.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Representative.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-12 " style="display:flex; flex-direction:column">
+                @Html.Label("Representative Surname", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Representative.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Representative.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-12" style="display:flex; flex-direction:column">
+                @Html.Label("Representative Adress", htmlAttributes: new { @class = "control-label col-md-10" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Representative.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Representative.Adress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+    <div class="row">
+        <div class="form-group col-md-7">
+            <div class="text-center justify-content-center ">
+                <input type="submit" value="Create" class="btn btn-default text-center justify-content-center savebutton" />
+                <button type="button" class="Cancel" onclick="location.href='@Url.Action("Index","Home")'">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+<
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
