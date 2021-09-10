@@ -45,6 +45,7 @@ namespace WebApp.Controllers
             UserViewModel user = Session["Login"] as UserViewModel;
             if (user.Role == UserRole.Admin.ToString())
             {
+                branch.RegistrationDate = DateTime.Now.ToString("dd.MM.yyyy");
                 branch.Status = Status.Confirmed.ToString();
             }
             else

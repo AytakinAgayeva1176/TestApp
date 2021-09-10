@@ -55,34 +55,49 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @if (item.Status == "Checked")
+                {
+                <p>Processing</p>
+                }
+
+                else
+                { @Html.DisplayFor(modelItem => item.Status)
+
+
+
+                }
             </td>
             <td>
 
-                <button>
+                <button class="btn">
                     @Html.ActionLink("Details", "Details", new { id = item.Id })
                 </button>
 
 
                 @if (item.Status == "Added")
                 {
-                    <button id='open' data-toggle="modal" data-target="#showmodal">
+                    <button id='open' data-toggle="modal" data-target="#showmodal" class="btn">
                         @Html.ActionLink("Icra Et", "Confirm", new { id = item.Id })
                     </button>
                 }
 
-                @if (item.Status == "Processing")
+                @if (item.Status == "Processing" || item.Status=="Checked")
                 {
                     <button class="btn btn-secondary" disabled>
                         Icra Edildi
                     </button>
                 }
+
+
                 @if (item.Status == "Confirmed")
                 {
                     <button class="btn btn-success" disabled>
                         Tətəsdiqləndi
                     </button>
-                }
+                    @Html.ActionLink("Print Details View To PDF", "PrintPartialViewToPdf", new { id = item.Id }) 
+
+
+}
                 @if (item.Status == "Rejected")
                 {
                     <button class="btn btn-danger" disabled>

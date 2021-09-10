@@ -16,13 +16,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Ana səhifə", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
             </div>
             <div class="navbar-collapse collapse" >
                 <div>
                     <ul class="nav navbar-nav" style="display:flex;">
-                        <li>@Html.ActionLink("Appeals", "GetAllAppeals", "Home")</li>
+                        <li>@Html.ActionLink("Bütün müraciətlər", "GetAllAppeals", "Home")</li>
                         @if (HttpContext.Current.Session["Login"] != null)
                         {
                             <li> @Html.ActionLink("LogOut", "LogOut", "User")</li>

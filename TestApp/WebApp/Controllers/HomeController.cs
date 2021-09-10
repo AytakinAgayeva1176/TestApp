@@ -4,6 +4,7 @@ using BusinessLogic.Services;
 using BusinessLogic.ViewModel;
 using Common.Enums;
 using DataAccess.Abstracts;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,17 +57,17 @@ namespace WebApp.Controllers
                 branchService.Create(branch, representativeId);
                 TempData["Success"] = "Added Successfully!";
 
-                return RedirectToAction("GetAllAppels");
+                return RedirectToAction("GetAllAppeals");
             }
 
-            else return  new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            else return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
 
         public string SaveFile(HttpPostedFileBase file)
         {
             string fileName = $"{Path.GetFileNameWithoutExtension(file.FileName)}" +
-                $"-{Guid.NewGuid().ToString("D").Substring(0,8)}" +
+                $"-{Guid.NewGuid().ToString("D").Substring(0, 8)}" +
                 $"{Path.GetExtension(file.FileName)}";
 
             string subPath = Path.Combine(Server.MapPath("~/UploadedFiles"));
@@ -82,7 +83,7 @@ namespace WebApp.Controllers
             return fileName;
         }
 
-      
+
         public ActionResult GetAllAppeals()
         {
             ViewBag.Workers = users;
@@ -94,7 +95,7 @@ namespace WebApp.Controllers
         {
             ViewBag.Workers = users;
             var branch = branchService.Get(id);
-            return PartialView("~/Views/Shared/_ModalPartialView.cshtml",branch);
+            return PartialView("~/Views/Shared/_ModalPartialView.cshtml", branch);
         }
 
         [HttpPost]
@@ -117,6 +118,12 @@ namespace WebApp.Controllers
             return View(branch);
         }
 
+        public ActionResult PrintPartialViewToPdf(string id)
+        {
+            var branch = branchService.Get(id);
+            var report = new PartialViewAsPdf("~/Views/Shared/_DetailBranchPartialView.cshtml", branch);
+            return report;
+        }
 
 
         List<UserViewModel> users = new List<UserViewModel>()

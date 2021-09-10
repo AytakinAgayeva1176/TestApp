@@ -1,0 +1,70 @@
+﻿@model BusinessLogic.ViewModel.BranchUpdateModel
+
+<div>
+    <h4>BranchUpdateModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayName("Muraciet Nomresi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Obyektin adi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Adres")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayName("Fealiyyet sahesi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scope)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayName("Selahiyyetli shexs")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Representative.Name)
+            @Html.DisplayFor(model => model.Representative.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Muraciet tarixi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Qeydiyyat tarixi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationDate)
+        </dd>
+
+    </dl>
+</div>
+
